@@ -3,6 +3,9 @@ package com.cxyzy.kt.utils
 import android.annotation.SuppressLint
 import android.content.Context
 
+/**
+ * 显示相关，像素dp转换
+ */
 object DisplayUtil {
 
     @SuppressLint("PrivateApi")
