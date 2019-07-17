@@ -1,7 +1,9 @@
 package com.cxyzy.kt.utils
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
+import android.graphics.Point
 
 /**
  * 显示相关，像素dp转换
@@ -24,6 +26,19 @@ object DisplayUtil {
         return statusBarHeight
     }
 
+    /**
+     * 获取屏幕高度和宽度
+     */
+    fun getScreenSize(activity: Activity): Point {
+        val defaultDisplay = activity.windowManager.defaultDisplay
+        val point = Point()
+        defaultDisplay.getSize(point)
+        return point
+    }
+
+    /**
+     * 获取除去状态栏的屏幕高度
+     */
     fun getScreenHeightExcludeStatusbar(context: Context): Int {
         return context.resources.displayMetrics.heightPixels - getStatusBarHeight(context)
     }
