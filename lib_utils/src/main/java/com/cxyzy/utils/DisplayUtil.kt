@@ -1,4 +1,4 @@
-package com.cxyzy.kt.utils
+package com.cxyzy.utils
 
 import android.annotation.SuppressLint
 import android.app.Activity

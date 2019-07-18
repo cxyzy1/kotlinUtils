@@ -1,4 +1,4 @@
-package com.cxyzy.kt.utils
+package com.cxyzy.utils.ext
 
 
 import android.content.Context
@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 
 /**
  * Display the simple Toast message with the [Toast.LENGTH_SHORT] duration.
- *
+ * copy from https://github.com/Kotlin/anko
  * @param message the message text resource.
  */
 inline fun Fragment.toast(message: Int) = activity?.toast(message)

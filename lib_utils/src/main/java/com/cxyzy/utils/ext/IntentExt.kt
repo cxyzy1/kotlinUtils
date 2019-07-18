@@ -1,4 +1,4 @@
-package com.cxyzy.kt.utils
+package com.cxyzy.utils.ext
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -16,16 +16,16 @@ import java.io.Serializable
  * Intent工具类
  */
 inline fun <reified T : Activity> Context.startActivity(vararg params: Pair<String, Any?>) =
-    AnkoInternals.internalStartActivity(this, T::class.java, params)
+        AnkoInternals.internalStartActivity(this, T::class.java, params)
 
 inline fun <reified T : Activity> Activity.startActivityForResult(requestCode: Int, vararg params: Pair<String, Any?>) =
-    AnkoInternals.internalStartActivityForResult(this, T::class.java, requestCode, params)
+        AnkoInternals.internalStartActivityForResult(this, T::class.java, requestCode, params)
 
 inline fun <reified T : Service> Context.startService(vararg params: Pair<String, Any?>) =
-    AnkoInternals.internalStartService(this, T::class.java, params)
+        AnkoInternals.internalStartService(this, T::class.java, params)
 
 inline fun <reified T : Service> Context.stopService(vararg params: Pair<String, Any?>) =
-    AnkoInternals.internalStopService(this, T::class.java, params)
+        AnkoInternals.internalStopService(this, T::class.java, params)
 
 inline fun Intent.clearTask(): Intent = apply { addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK) }
 

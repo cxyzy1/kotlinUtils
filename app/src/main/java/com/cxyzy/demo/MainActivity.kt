@@ -2,7 +2,7 @@ package com.cxyzy.demo
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.cxyzy.kt.utils.toast
+import com.cxyzy.utils.ext.toast
 
 class MainActivity : AppCompatActivity() {
 
