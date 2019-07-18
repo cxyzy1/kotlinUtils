@@ -24,8 +24,8 @@ import java.security.SecureRandom
  */
 class EncryptUtilsTest : BaseTest() {
 
-    private val blankjHmacSHA512 = "FC55AD54B95F55A8E32EA1BAD7748C157F80679F5561EC95A3EAD975316BA85363CB4AF6462D695F742F469EDC2D577272BE359A7F9E9C7018FDF4C921E1B3CF"
-    private val blankjHmackey = "blankj"
+    private val testHmacSHA512 = "FC55AD54B95F55A8E32EA1BAD7748C157F80679F5561EC95A3EAD975316BA85363CB4AF6462D695F742F469EDC2D577272BE359A7F9E9C7018FDF4C921E1B3CF"
+    private val testHmackey = "blankj"
 
 
     private val dataDES = "0008DB3345AB0223"
@@ -185,15 +185,15 @@ class EncryptUtilsTest : BaseTest() {
         val blankjHmacMD5 = "2BA3FDABEE222522044BEC0CE5D6B490"
         assertEquals(
                 blankjHmacMD5,
-                EncryptUtils.encryptHmacMD5ToString("blankj", blankjHmackey)
+                EncryptUtils.encryptHmacMD5ToString("blankj", testHmackey)
         )
         assertEquals(
                 blankjHmacMD5,
-                EncryptUtils.encryptHmacMD5ToString("blankj".toByteArray(), blankjHmackey.toByteArray())
+                EncryptUtils.encryptHmacMD5ToString("blankj".toByteArray(), testHmackey.toByteArray())
         )
         assertArrayEquals(
                 hexString2Bytes(blankjHmacMD5),
-                EncryptUtils.encryptHmacMD5("blankj".toByteArray(), blankjHmackey.toByteArray())
+                EncryptUtils.encryptHmacMD5("blankj".toByteArray(), testHmackey.toByteArray())
         )
     }
 
@@ -202,15 +202,15 @@ class EncryptUtilsTest : BaseTest() {
         val blankjHmacSHA1 = "88E83EFD915496860C83739BE2CF4752B2AC105F"
         assertEquals(
                 blankjHmacSHA1,
-                EncryptUtils.encryptHmacSHA1ToString("blankj", blankjHmackey)
+                EncryptUtils.encryptHmacSHA1ToString("blankj", testHmackey)
         )
         assertEquals(
                 blankjHmacSHA1,
-                EncryptUtils.encryptHmacSHA1ToString("blankj".toByteArray(), blankjHmackey.toByteArray())
+                EncryptUtils.encryptHmacSHA1ToString("blankj".toByteArray(), testHmackey.toByteArray())
         )
         assertArrayEquals(
                 hexString2Bytes(blankjHmacSHA1),
-                EncryptUtils.encryptHmacSHA1("blankj".toByteArray(), blankjHmackey.toByteArray())
+                EncryptUtils.encryptHmacSHA1("blankj".toByteArray(), testHmackey.toByteArray())
         )
     }
 
@@ -219,15 +219,15 @@ class EncryptUtilsTest : BaseTest() {
         val blankjHmacSHA224 = "E392D83D1030323FB2E062E8165A3AD38366E53DF19EA3290961E153"
         assertEquals(
                 blankjHmacSHA224,
-                EncryptUtils.encryptHmacSHA224ToString("blankj", blankjHmackey)
+                EncryptUtils.encryptHmacSHA224ToString("blankj", testHmackey)
         )
         assertEquals(
                 blankjHmacSHA224,
-                EncryptUtils.encryptHmacSHA224ToString("blankj".toByteArray(), blankjHmackey.toByteArray())
+                EncryptUtils.encryptHmacSHA224ToString("blankj".toByteArray(), testHmackey.toByteArray())
         )
         assertArrayEquals(
                 hexString2Bytes(blankjHmacSHA224),
-                EncryptUtils.encryptHmacSHA224("blankj".toByteArray(), blankjHmackey.toByteArray())
+                EncryptUtils.encryptHmacSHA224("blankj".toByteArray(), testHmackey.toByteArray())
         )
     }
 
@@ -236,15 +236,15 @@ class EncryptUtilsTest : BaseTest() {
         val blankjHmacSHA256 = "A59675F13FC9A6E06D8DC90D4DC01DB9C991B0B95749D2471E588BF311DA2C67"
         assertEquals(
                 blankjHmacSHA256,
-                EncryptUtils.encryptHmacSHA256ToString("blankj", blankjHmackey)
+                EncryptUtils.encryptHmacSHA256ToString("blankj", testHmackey)
         )
         assertEquals(
                 blankjHmacSHA256,
-                EncryptUtils.encryptHmacSHA256ToString("blankj".toByteArray(), blankjHmackey.toByteArray())
+                EncryptUtils.encryptHmacSHA256ToString("blankj".toByteArray(), testHmackey.toByteArray())
         )
         assertArrayEquals(
                 hexString2Bytes(blankjHmacSHA256),
-                EncryptUtils.encryptHmacSHA256("blankj".toByteArray(), blankjHmackey.toByteArray())
+                EncryptUtils.encryptHmacSHA256("blankj".toByteArray(), testHmackey.toByteArray())
         )
     }
 
@@ -253,31 +253,31 @@ class EncryptUtilsTest : BaseTest() {
         val blankjHmacSHA384 = "9FC2F49C7EDE698EA59645B3BEFBBE67DCC7D6623E03D4D03CDA1324F7B6445BC428AB42F6A962CF79AFAD1302C3223D"
         assertEquals(
                 blankjHmacSHA384,
-                EncryptUtils.encryptHmacSHA384ToString("blankj", blankjHmackey)
+                EncryptUtils.encryptHmacSHA384ToString("blankj", testHmackey)
         )
         assertEquals(
                 blankjHmacSHA384,
-                EncryptUtils.encryptHmacSHA384ToString("blankj".toByteArray(), blankjHmackey.toByteArray())
+                EncryptUtils.encryptHmacSHA384ToString("blankj".toByteArray(), testHmackey.toByteArray())
         )
         assertArrayEquals(
                 hexString2Bytes(blankjHmacSHA384),
-                EncryptUtils.encryptHmacSHA384("blankj".toByteArray(), blankjHmackey.toByteArray())
+                EncryptUtils.encryptHmacSHA384("blankj".toByteArray(), testHmackey.toByteArray())
         )
     }
 
     @Test
     fun encryptHmacSHA512() {
         assertEquals(
-                blankjHmacSHA512,
-                EncryptUtils.encryptHmacSHA512ToString("blankj", blankjHmackey)
+                testHmacSHA512,
+                EncryptUtils.encryptHmacSHA512ToString("blankj", testHmackey)
         )
         assertEquals(
-                blankjHmacSHA512,
-                EncryptUtils.encryptHmacSHA512ToString("blankj".toByteArray(), blankjHmackey.toByteArray())
+                testHmacSHA512,
+                EncryptUtils.encryptHmacSHA512ToString("blankj".toByteArray(), testHmackey.toByteArray())
         )
         assertArrayEquals(
-                hexString2Bytes(blankjHmacSHA512),
-                EncryptUtils.encryptHmacSHA512("blankj".toByteArray(), blankjHmackey.toByteArray())
+                hexString2Bytes(testHmacSHA512),
+                EncryptUtils.encryptHmacSHA512("blankj".toByteArray(), testHmackey.toByteArray())
         )
     }
 
