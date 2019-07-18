@@ -6,7 +6,7 @@ import com.cxyzy.utils.blankj.Utils
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
-import org.robolectric.RuntimeEnvironment
+import androidx.test.core.app.ApplicationProvider
 import org.robolectric.annotation.Config
 import org.robolectric.shadows.ShadowLog
 
@@ -24,7 +24,7 @@ import org.robolectric.shadows.ShadowLog
 open class BaseTest {
     init {
         ShadowLog.stream = System.out
-        Utils.init(RuntimeEnvironment.application)
+        Utils.init(ApplicationProvider.getApplicationContext())
     }
 
     @Test
