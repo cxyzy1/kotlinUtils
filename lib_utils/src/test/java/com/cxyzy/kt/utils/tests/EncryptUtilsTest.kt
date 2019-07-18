@@ -1,9 +1,10 @@
-package com.cxyzy.kt.utils
+package com.cxyzy.kt.utils.tests
 
 import android.util.Base64
+import com.cxyzy.kt.utils.BaseTest
 import com.cxyzy.kt.utils.TestConfig.PATH_ENCRYPT
+import com.cxyzy.utils.EncryptUtils
 import com.cxyzy.utils.blankj.EncodeUtils
-import com.cxyzy.utils.blankj.EncryptUtils
 import org.junit.Assert
 import org.junit.Assert.assertArrayEquals
 import org.junit.Assert.assertEquals

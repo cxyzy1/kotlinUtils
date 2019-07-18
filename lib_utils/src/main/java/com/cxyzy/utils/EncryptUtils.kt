@@ -1,4 +1,4 @@
-package com.cxyzy.utils.blankj
+package com.cxyzy.utils
 
 import android.util.Base64
 import java.io.File
