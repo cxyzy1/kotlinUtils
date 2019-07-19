@@ -73,18 +73,18 @@ class EncryptUtilsTest : BaseTest() {
 
     @Test
     fun encryptSHA1() {
-        val sha1Str = "C606ACCB1FEB669E19D080ADDDDBB8E6CDA5F43C"
+        val sha1Str = "A94A8FE5CCB19BA61C4C0873D391E987982FBBD3"
         assertEquals(
                 sha1Str,
-                EncryptUtils.encryptSHA1ToString("blankj")
+                EncryptUtils.encryptSHA1ToString("test")
         )
         assertEquals(
                 sha1Str,
-                EncryptUtils.encryptSHA1ToString("blankj".toByteArray())
+                EncryptUtils.encryptSHA1ToString("test".toByteArray())
         )
         assertArrayEquals(
                 hexString2Bytes(sha1Str),
-                EncryptUtils.encryptSHA1("blankj".toByteArray())
+                EncryptUtils.encryptSHA1("test".toByteArray())
         )
     }
 
