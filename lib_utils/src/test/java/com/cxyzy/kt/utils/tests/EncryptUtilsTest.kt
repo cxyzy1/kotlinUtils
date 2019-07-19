@@ -15,14 +15,6 @@ import java.security.NoSuchAlgorithmException
 import java.security.SecureRandom
 
 
-/**
- * <pre>
- * author: Blankj
- * blog  : http://blankj.com
- * time  : 2016/08/06
- * desc  : test EncryptUtils
-</pre> *
- */
 class EncryptUtilsTest : BaseTest() {
 
     private val testHmacSHA512 = "FC55AD54B95F55A8E32EA1BAD7748C157F80679F5561EC95A3EAD975316BA85363CB4AF6462D695F742F469EDC2D577272BE359A7F9E9C7018FDF4C921E1B3CF"
@@ -56,7 +48,7 @@ class EncryptUtilsTest : BaseTest() {
     @Test
     fun encryptMD2() {
         val blankjMD2 = "15435017570D8A73449E25C4622E17A4"
-        Assert.assertEquals(
+        assertEquals(
                 blankjMD2,
                 EncryptUtils.encryptMD2ToString("blankj")
         )
