@@ -47,18 +47,18 @@ class EncryptUtilsTest : BaseTest() {
 
     @Test
     fun encryptMD5() {
-        val md5Str = "AAC25CD336E01C8655F4EC7875445A60"
+        val md5Str = "098F6BCD4621D373CADE4E832627B4F6"
         assertEquals(
                 md5Str,
-                EncryptUtils.encryptMD5ToString("blankj")
+                EncryptUtils.encryptMD5ToString("test")
         )
         assertEquals(
                 md5Str,
-                EncryptUtils.encryptMD5ToString("blankj".toByteArray())
+                EncryptUtils.encryptMD5ToString("test".toByteArray())
         )
         assertArrayEquals(
                 hexString2Bytes(md5Str),
-                EncryptUtils.encryptMD5("blankj".toByteArray())
+                EncryptUtils.encryptMD5("test".toByteArray())
         )
     }
 
