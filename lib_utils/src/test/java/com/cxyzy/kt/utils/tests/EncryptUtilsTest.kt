@@ -16,8 +16,8 @@ import java.security.SecureRandom
 
 class EncryptUtilsTest : BaseTest() {
 
-    private val testHmacSHA512 = "FC55AD54B95F55A8E32EA1BAD7748C157F80679F5561EC95A3EAD975316BA85363CB4AF6462D695F742F469EDC2D577272BE359A7F9E9C7018FDF4C921E1B3CF"
-    private val testHmackey = "blankj"
+    private val testHmacSHA512 = "9BA1F63365A6CAF66E46348F43CDEF956015BEA997ADEB06E69007EE3FF517DF10FC5EB860DA3D43B82C2A040C931119D2DFC6D08E253742293A868CC2D82015"
+    private val testHmackey = "test"
 
 
     private val dataDES = "0008DB3345AB0223"
@@ -90,86 +90,86 @@ class EncryptUtilsTest : BaseTest() {
 
     @Test
     fun encryptSHA256() {
-        val sha256Str = "8BD80AE90DFBA112786367BEBDDEE60A638EF5B82682EDF8F3D3CA8E6BFEF648"
+        val sha256Str = "9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B2B0B822CD15D6C15B0F00A08"
         assertEquals(
                 sha256Str,
-                EncryptUtils.encryptSHA256ToString("blankj")
+                EncryptUtils.encryptSHA256ToString("test")
         )
         assertEquals(
                 sha256Str,
-                EncryptUtils.encryptSHA256ToString("blankj".toByteArray())
+                EncryptUtils.encryptSHA256ToString("test".toByteArray())
         )
         assertArrayEquals(
                 hexString2Bytes(sha256Str),
-                EncryptUtils.encryptSHA256("blankj".toByteArray()))
+                EncryptUtils.encryptSHA256("test".toByteArray()))
 
     }
 
     @Test
     fun encryptSHA512() {
-        val sha512Str = "D59D31067F614ED3586F85A31FEFDB7F33096316DA26EBE0FF440B241C8560D96650F100D78C512560C976949EFA89CB5D5589DCF68C7FAADE98F03BCFEC2B45"
+        val sha512Str = "EE26B0DD4AF7E749AA1A8EE3C10AE9923F618980772E473F8819A5D4940E0DB27AC185F8A0E1D5F84F88BC887FD67B143732C304CC5FA9AD8E6F57F50028A8FF"
         assertEquals(
                 sha512Str,
-                EncryptUtils.encryptSHA512ToString("blankj")
+                EncryptUtils.encryptSHA512ToString("test")
         )
         assertEquals(
                 sha512Str,
-                EncryptUtils.encryptSHA512ToString("blankj".toByteArray())
+                EncryptUtils.encryptSHA512ToString("test".toByteArray())
         )
         assertArrayEquals(
                 hexString2Bytes(sha512Str),
-                EncryptUtils.encryptSHA512("blankj".toByteArray())
+                EncryptUtils.encryptSHA512("test".toByteArray())
         )
     }
 
     @Test
     fun encryptHmacMD5() {
-        val hmacStr = "2BA3FDABEE222522044BEC0CE5D6B490"
+        val hmacStr = "CD4B0DCBE0F4538B979FB73664F51ABE"
         assertEquals(
                 hmacStr,
-                EncryptUtils.encryptHmacMD5ToString("blankj", testHmackey)
+                EncryptUtils.encryptHmacMD5ToString("test", testHmackey)
         )
         assertEquals(
                 hmacStr,
-                EncryptUtils.encryptHmacMD5ToString("blankj".toByteArray(), testHmackey.toByteArray())
+                EncryptUtils.encryptHmacMD5ToString("test".toByteArray(), testHmackey.toByteArray())
         )
         assertArrayEquals(
                 hexString2Bytes(hmacStr),
-                EncryptUtils.encryptHmacMD5("blankj".toByteArray(), testHmackey.toByteArray())
+                EncryptUtils.encryptHmacMD5("test".toByteArray(), testHmackey.toByteArray())
         )
     }
 
     @Test
     fun encryptHmacSHA1() {
-        val sha1Str = "88E83EFD915496860C83739BE2CF4752B2AC105F"
+        val sha1Str = "0C94515C15E5095B8A87A50BA0DF3BF38ED05FE6"
         assertEquals(
                 sha1Str,
-                EncryptUtils.encryptHmacSHA1ToString("blankj", testHmackey)
+                EncryptUtils.encryptHmacSHA1ToString("test", testHmackey)
         )
         assertEquals(
                 sha1Str,
-                EncryptUtils.encryptHmacSHA1ToString("blankj".toByteArray(), testHmackey.toByteArray())
+                EncryptUtils.encryptHmacSHA1ToString("test".toByteArray(), testHmackey.toByteArray())
         )
         assertArrayEquals(
                 hexString2Bytes(sha1Str),
-                EncryptUtils.encryptHmacSHA1("blankj".toByteArray(), testHmackey.toByteArray())
+                EncryptUtils.encryptHmacSHA1("test".toByteArray(), testHmackey.toByteArray())
         )
     }
 
     @Test
     fun encryptHmacSHA256() {
-        val sha256Str = "A59675F13FC9A6E06D8DC90D4DC01DB9C991B0B95749D2471E588BF311DA2C67"
+        val sha256Str = "88CD2108B5347D973CF39CDF9053D7DD42704876D8C9A9BD8E2D168259D3DDF7"
         assertEquals(
                 sha256Str,
-                EncryptUtils.encryptHmacSHA256ToString("blankj", testHmackey)
+                EncryptUtils.encryptHmacSHA256ToString("test", testHmackey)
         )
         assertEquals(
                 sha256Str,
-                EncryptUtils.encryptHmacSHA256ToString("blankj".toByteArray(), testHmackey.toByteArray())
+                EncryptUtils.encryptHmacSHA256ToString("test".toByteArray(), testHmackey.toByteArray())
         )
         assertArrayEquals(
                 hexString2Bytes(sha256Str),
-                EncryptUtils.encryptHmacSHA256("blankj".toByteArray(), testHmackey.toByteArray())
+                EncryptUtils.encryptHmacSHA256("test".toByteArray(), testHmackey.toByteArray())
         )
     }
 
@@ -177,15 +177,15 @@ class EncryptUtilsTest : BaseTest() {
     fun encryptHmacSHA512() {
         assertEquals(
                 testHmacSHA512,
-                EncryptUtils.encryptHmacSHA512ToString("blankj", testHmackey)
+                EncryptUtils.encryptHmacSHA512ToString("test", testHmackey)
         )
         assertEquals(
                 testHmacSHA512,
-                EncryptUtils.encryptHmacSHA512ToString("blankj".toByteArray(), testHmackey.toByteArray())
+                EncryptUtils.encryptHmacSHA512ToString("test".toByteArray(), testHmackey.toByteArray())
         )
         assertArrayEquals(
                 hexString2Bytes(testHmacSHA512),
-                EncryptUtils.encryptHmacSHA512("blankj".toByteArray(), testHmackey.toByteArray())
+                EncryptUtils.encryptHmacSHA512("test".toByteArray(), testHmackey.toByteArray())
         )
     }
 
