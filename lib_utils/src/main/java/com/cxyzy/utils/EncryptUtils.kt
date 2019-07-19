@@ -23,40 +23,6 @@ object EncryptUtils {
 
     private val HEX_DIGITS = charArrayOf('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F')
 
-    ///////////////////////////////////////////////////////////////////////////
-    // hash encryption
-    ///////////////////////////////////////////////////////////////////////////
-
-    /**
-     * Return the hex string of MD2 encryption.
-     *
-     * @param data The data.
-     * @return the hex string of MD2 encryption
-     */
-    fun encryptMD2ToString(data: String?): String {
-        return if (data == null || data.isEmpty()) "" else encryptMD2ToString(data.toByteArray())
-    }
-
-    /**
-     * Return the hex string of MD2 encryption.
-     *
-     * @param data The data.
-     * @return the hex string of MD2 encryption
-     */
-    fun encryptMD2ToString(data: ByteArray): String {
-        return bytes2HexString(encryptMD2(data))
-    }
-
-    /**
-     * Return the bytes of MD2 encryption.
-     *
-     * @param data The data.
-     * @return the bytes of MD2 encryption
-     */
-    fun encryptMD2(data: ByteArray): ByteArray? {
-        return hashTemplate(data, "MD2")
-    }
-
     /**
      * Return the hex string of MD5 encryption.
      *
