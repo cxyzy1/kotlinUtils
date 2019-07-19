@@ -16,12 +16,7 @@ import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
 /**
- * <pre>
- * author: Blankj
- * blog  : http://blankj.com
- * time  : 2016/08/02
- * desc  : utils about encrypt
- * forked on 2019.07.18 from https://github.com/Blankj/AndroidUtilCode
+ * utils to encrypt and decrypt
 </pre> *
  */
 object EncryptUtils {
