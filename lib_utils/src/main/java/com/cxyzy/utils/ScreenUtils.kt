@@ -31,7 +31,7 @@ object ScreenUtils {
      */
     val screenWidth: Int
         get() {
-            val wm = Utils.getApp().getSystemService(Context.WINDOW_SERVICE) as WindowManager
+            val wm = Utils.app.getSystemService(Context.WINDOW_SERVICE) as WindowManager
             val point = Point()
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 wm.defaultDisplay.getRealSize(point)
@@ -48,7 +48,7 @@ object ScreenUtils {
      */
     val screenHeight: Int
         get() {
-            val wm = Utils.getApp().getSystemService(Context.WINDOW_SERVICE) as WindowManager
+            val wm = Utils.app.getSystemService(Context.WINDOW_SERVICE) as WindowManager
             val point = Point()
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 wm.defaultDisplay.getRealSize(point)
@@ -65,7 +65,7 @@ object ScreenUtils {
      */
     val appScreenWidth: Int
         get() {
-            val wm = Utils.getApp().getSystemService(Context.WINDOW_SERVICE) as WindowManager
+            val wm = Utils.app.getSystemService(Context.WINDOW_SERVICE) as WindowManager
             val point = Point()
             wm.defaultDisplay.getSize(point)
             return point.x
@@ -78,7 +78,7 @@ object ScreenUtils {
      */
     val appScreenHeight: Int
         get() {
-            val wm = Utils.getApp().getSystemService(Context.WINDOW_SERVICE) as WindowManager
+            val wm = Utils.app.getSystemService(Context.WINDOW_SERVICE) as WindowManager
             val point = Point()
             wm.defaultDisplay.getSize(point)
             return point.y
@@ -106,7 +106,7 @@ object ScreenUtils {
      * @return `true`: yes<br></br>`false`: no
      */
     val isLandscape: Boolean
-        get() = Utils.getApp().resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+        get() = Utils.app.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
     /**
      * Return whether screen is portrait.
@@ -114,7 +114,7 @@ object ScreenUtils {
      * @return `true`: yes<br></br>`false`: no
      */
     val isPortrait: Boolean
-        get() = Utils.getApp().resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
+        get() = Utils.app.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
 
     /**
      * Return whether screen is locked.
@@ -123,7 +123,7 @@ object ScreenUtils {
      */
     val isScreenLock: Boolean
         get() {
-            val km = Utils.getApp().getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
+            val km = Utils.app.getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
             return km.inKeyguardRestrictedInputMode()
         }
 
@@ -143,7 +143,7 @@ object ScreenUtils {
         get() {
             return try {
                 Settings.System.getInt(
-                        Utils.getApp().contentResolver,
+                        Utils.app.contentResolver,
                         Settings.System.SCREEN_OFF_TIMEOUT
                 )
             } catch (e: Settings.SettingNotFoundException) {
@@ -155,7 +155,7 @@ object ScreenUtils {
         @RequiresPermission(WRITE_SETTINGS)
         set(duration) {
             Settings.System.putInt(
-                    Utils.getApp().contentResolver,
+                    Utils.app.contentResolver,
                     Settings.System.SCREEN_OFF_TIMEOUT,
                     duration
             )

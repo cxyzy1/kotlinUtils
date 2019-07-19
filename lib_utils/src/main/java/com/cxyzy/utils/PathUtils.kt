@@ -43,8 +43,8 @@ object PathUtils {
      */
     val internalAppDataPath: String
         get() = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            Utils.getApp().applicationInfo.dataDir
-        } else getAbsolutePath(Utils.getApp().dataDir)
+            Utils.app.applicationInfo.dataDir
+        } else getAbsolutePath(Utils.app.dataDir)
 
     /**
      * Return the path of /data/data/package/code_cache.
@@ -53,8 +53,8 @@ object PathUtils {
      */
     val internalAppCodeCacheDir: String
         get() = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            Utils.getApp().applicationInfo.dataDir + "/code_cache"
-        } else getAbsolutePath(Utils.getApp().codeCacheDir)
+            Utils.app.applicationInfo.dataDir + "/code_cache"
+        } else getAbsolutePath(Utils.app.codeCacheDir)
 
     /**
      * Return the path of /data/data/package/cache.
@@ -62,7 +62,7 @@ object PathUtils {
      * @return the path of /data/data/package/cache
      */
     val internalAppCachePath: String
-        get() = getAbsolutePath(Utils.getApp().cacheDir)
+        get() = getAbsolutePath(Utils.app.cacheDir)
 
     /**
      * Return the path of /data/data/package/databases.
@@ -70,7 +70,7 @@ object PathUtils {
      * @return the path of /data/data/package/databases
      */
     val internalAppDbsPath: String
-        get() = Utils.getApp().applicationInfo.dataDir + "/databases"
+        get() = Utils.app.applicationInfo.dataDir + "/databases"
 
     /**
      * Return the path of /data/data/package/files.
@@ -78,7 +78,7 @@ object PathUtils {
      * @return the path of /data/data/package/files
      */
     val internalAppFilesPath: String
-        get() = getAbsolutePath(Utils.getApp().filesDir)
+        get() = getAbsolutePath(Utils.app.filesDir)
 
     /**
      * Return the path of /data/data/package/shared_prefs.
@@ -86,7 +86,7 @@ object PathUtils {
      * @return the path of /data/data/package/shared_prefs
      */
     val internalAppSpPath: String
-        get() = Utils.getApp().applicationInfo.dataDir + "/shared_prefs"
+        get() = Utils.app.applicationInfo.dataDir + "/shared_prefs"
 
     /**
      * Return the path of /data/data/package/no_backup.
@@ -95,8 +95,8 @@ object PathUtils {
      */
     val internalAppNoBackupFilesPath: String
         get() = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            Utils.getApp().applicationInfo.dataDir + "/no_backup"
-        } else getAbsolutePath(Utils.getApp().noBackupFilesDir)
+            Utils.app.applicationInfo.dataDir + "/no_backup"
+        } else getAbsolutePath(Utils.app.noBackupFilesDir)
 
     /**
      * Return the path of /storage/emulated/0.
@@ -199,7 +199,7 @@ object PathUtils {
     val externalAppDataPath: String
         get() {
             if (isExternalStorageDisable) return ""
-            val externalCacheDir = Utils.getApp().externalCacheDir ?: return ""
+            val externalCacheDir = Utils.app.externalCacheDir ?: return ""
             return getAbsolutePath(externalCacheDir.parentFile)
         }
 
@@ -209,7 +209,7 @@ object PathUtils {
      * @return the path of /storage/emulated/0/Android/data/package/cache
      */
     val externalAppCachePath: String
-        get() = if (isExternalStorageDisable) "" else getAbsolutePath(Utils.getApp().externalCacheDir)
+        get() = if (isExternalStorageDisable) "" else getAbsolutePath(Utils.app.externalCacheDir)
 
     /**
      * Return the path of /storage/emulated/0/Android/data/package/files.
@@ -217,7 +217,7 @@ object PathUtils {
      * @return the path of /storage/emulated/0/Android/data/package/files
      */
     val externalAppFilesPath: String
-        get() = if (isExternalStorageDisable) "" else getAbsolutePath(Utils.getApp().getExternalFilesDir(null))
+        get() = if (isExternalStorageDisable) "" else getAbsolutePath(Utils.app.getExternalFilesDir(null))
 
     /**
      * Return the path of /storage/emulated/0/Android/data/package/files/Music.
@@ -225,7 +225,7 @@ object PathUtils {
      * @return the path of /storage/emulated/0/Android/data/package/files/Music
      */
     val externalAppMusicPath: String
-        get() = if (isExternalStorageDisable) "" else getAbsolutePath(Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_MUSIC))
+        get() = if (isExternalStorageDisable) "" else getAbsolutePath(Utils.app.getExternalFilesDir(Environment.DIRECTORY_MUSIC))
 
     /**
      * Return the path of /storage/emulated/0/Android/data/package/files/Podcasts.
@@ -233,7 +233,7 @@ object PathUtils {
      * @return the path of /storage/emulated/0/Android/data/package/files/Podcasts
      */
     val externalAppPodcastsPath: String
-        get() = if (isExternalStorageDisable) "" else getAbsolutePath(Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_PODCASTS))
+        get() = if (isExternalStorageDisable) "" else getAbsolutePath(Utils.app.getExternalFilesDir(Environment.DIRECTORY_PODCASTS))
 
     /**
      * Return the path of /storage/emulated/0/Android/data/package/files/Ringtones.
@@ -241,7 +241,7 @@ object PathUtils {
      * @return the path of /storage/emulated/0/Android/data/package/files/Ringtones
      */
     val externalAppRingtonesPath: String
-        get() = if (isExternalStorageDisable) "" else getAbsolutePath(Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_RINGTONES))
+        get() = if (isExternalStorageDisable) "" else getAbsolutePath(Utils.app.getExternalFilesDir(Environment.DIRECTORY_RINGTONES))
 
     /**
      * Return the path of /storage/emulated/0/Android/data/package/files/Alarms.
@@ -249,7 +249,7 @@ object PathUtils {
      * @return the path of /storage/emulated/0/Android/data/package/files/Alarms
      */
     val externalAppAlarmsPath: String
-        get() = if (isExternalStorageDisable) "" else getAbsolutePath(Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_ALARMS))
+        get() = if (isExternalStorageDisable) "" else getAbsolutePath(Utils.app.getExternalFilesDir(Environment.DIRECTORY_ALARMS))
 
     /**
      * Return the path of /storage/emulated/0/Android/data/package/files/Notifications.
@@ -257,7 +257,7 @@ object PathUtils {
      * @return the path of /storage/emulated/0/Android/data/package/files/Notifications
      */
     val externalAppNotificationsPath: String
-        get() = if (isExternalStorageDisable) "" else getAbsolutePath(Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_NOTIFICATIONS))
+        get() = if (isExternalStorageDisable) "" else getAbsolutePath(Utils.app.getExternalFilesDir(Environment.DIRECTORY_NOTIFICATIONS))
 
     /**
      * Return the path of /storage/emulated/0/Android/data/package/files/Pictures.
@@ -265,7 +265,7 @@ object PathUtils {
      * @return path of /storage/emulated/0/Android/data/package/files/Pictures
      */
     val externalAppPicturesPath: String
-        get() = if (isExternalStorageDisable) "" else getAbsolutePath(Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_PICTURES))
+        get() = if (isExternalStorageDisable) "" else getAbsolutePath(Utils.app.getExternalFilesDir(Environment.DIRECTORY_PICTURES))
 
     /**
      * Return the path of /storage/emulated/0/Android/data/package/files/Movies.
@@ -273,7 +273,7 @@ object PathUtils {
      * @return the path of /storage/emulated/0/Android/data/package/files/Movies
      */
     val externalAppMoviesPath: String
-        get() = if (isExternalStorageDisable) "" else getAbsolutePath(Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_MOVIES))
+        get() = if (isExternalStorageDisable) "" else getAbsolutePath(Utils.app.getExternalFilesDir(Environment.DIRECTORY_MOVIES))
 
     /**
      * Return the path of /storage/emulated/0/Android/data/package/files/Download.
@@ -281,7 +281,7 @@ object PathUtils {
      * @return the path of /storage/emulated/0/Android/data/package/files/Download
      */
     val externalAppDownloadPath: String
-        get() = if (isExternalStorageDisable) "" else getAbsolutePath(Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS))
+        get() = if (isExternalStorageDisable) "" else getAbsolutePath(Utils.app.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS))
 
     /**
      * Return the path of /storage/emulated/0/Android/data/package/files/DCIM.
@@ -289,7 +289,7 @@ object PathUtils {
      * @return the path of /storage/emulated/0/Android/data/package/files/DCIM
      */
     val externalAppDcimPath: String
-        get() = if (isExternalStorageDisable) "" else getAbsolutePath(Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_DCIM))
+        get() = if (isExternalStorageDisable) "" else getAbsolutePath(Utils.app.getExternalFilesDir(Environment.DIRECTORY_DCIM))
 
     /**
      * Return the path of /storage/emulated/0/Android/data/package/files/Documents.
@@ -300,8 +300,8 @@ object PathUtils {
         get() {
             if (isExternalStorageDisable) return ""
             return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-                getAbsolutePath(Utils.getApp().getExternalFilesDir(null)) + "/Documents"
-            } else getAbsolutePath(Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS))
+                getAbsolutePath(Utils.app.getExternalFilesDir(null)) + "/Documents"
+            } else getAbsolutePath(Utils.app.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS))
         }
 
     /**
@@ -310,7 +310,7 @@ object PathUtils {
      * @return the path of /storage/emulated/0/Android/obb/package
      */
     val externalAppObbPath: String
-        get() = if (isExternalStorageDisable) "" else getAbsolutePath(Utils.getApp().obbDir)
+        get() = if (isExternalStorageDisable) "" else getAbsolutePath(Utils.app.obbDir)
 
     private val isExternalStorageDisable: Boolean
         get() = Environment.MEDIA_MOUNTED != Environment.getExternalStorageState()
@@ -322,7 +322,7 @@ object PathUtils {
      * @return the path of /data/data/package/databases/name
      */
     fun getInternalAppDbPath(name: String): String {
-        return getAbsolutePath(Utils.getApp().getDatabasePath(name))
+        return getAbsolutePath(Utils.app.getDatabasePath(name))
     }
 
     private fun getAbsolutePath(file: File?): String {

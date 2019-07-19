@@ -56,7 +56,7 @@ object DeviceUtils {
     val isAdbEnabled: Boolean
         @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
         get() = Settings.Secure.getInt(
-                Utils.getApp().contentResolver,
+                Utils.app.contentResolver,
                 Settings.Global.ADB_ENABLED, 0
         ) > 0
 
@@ -85,7 +85,7 @@ object DeviceUtils {
         @SuppressLint("HardwareIds")
         get() {
             val id = Settings.Secure.getString(
-                    Utils.getApp().contentResolver,
+                    Utils.app.contentResolver,
                     Settings.Secure.ANDROID_ID
             )
             return id ?: ""
@@ -107,7 +107,7 @@ object DeviceUtils {
         @SuppressLint("MissingPermission", "HardwareIds")
         get() {
             try {
-                val wifi = Utils.getApp()
+                val wifi = Utils.app
                         .applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
                 if (wifi != null) {
                     val info = wifi.connectionInfo
@@ -260,7 +260,7 @@ object DeviceUtils {
      * @return `true`: yes<br></br>`false`: no
      */
     val isTablet: Boolean
-        get() = Utils.getApp().resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK >= Configuration.SCREENLAYOUT_SIZE_LARGE
+        get() = Utils.app.resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK >= Configuration.SCREENLAYOUT_SIZE_LARGE
 
     /**
      * Return whether device is emulator.
@@ -286,7 +286,7 @@ object DeviceUtils {
             if (checkDebuggerConnected) return true
 
             var operatorName = ""
-            val tm = Utils.getApp().getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+            val tm = Utils.app.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
             if (tm != null) {
                 val name = tm.networkOperatorName
                 if (name != null) {
@@ -300,7 +300,7 @@ object DeviceUtils {
             val intent = Intent()
             intent.data = Uri.parse(url)
             intent.action = Intent.ACTION_DIAL
-            val checkDial = intent.resolveActivity(Utils.getApp().packageManager) != null
+            val checkDial = intent.resolveActivity(Utils.app.packageManager) != null
             return if (checkDial) true else false
 
         }
