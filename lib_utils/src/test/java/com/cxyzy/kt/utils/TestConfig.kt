@@ -1,13 +1,6 @@
 package com.cxyzy.kt.utils
 
-/**
- * <pre>
- * author: Blankj
- * blog  : http://blankj.com
- * time  : 2017/09/10
- * desc  : config of test
-</pre> *
- */
+
 object TestConfig {
     private val TEST_PATH: String
     val FILE_SEP = System.getProperty("file.separator")

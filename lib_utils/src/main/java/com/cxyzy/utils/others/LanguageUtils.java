@@ -18,14 +18,7 @@ import androidx.annotation.NonNull;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2019/06/20
- *     desc  : utils about language
- * </pre>
- */
+
 public class LanguageUtils {
 
     private static final String KEY_LOCALE          = "KEY_LOCALE";
