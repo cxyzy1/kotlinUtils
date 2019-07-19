@@ -181,36 +181,6 @@ object EncryptUtils {
     }
 
     /**
-     * Return the hex string of SHA224 encryption.
-     *
-     * @param data The data.
-     * @return the hex string of SHA224 encryption
-     */
-    fun encryptSHA224ToString(data: String?): String {
-        return if (data == null || data.isEmpty()) "" else encryptSHA224ToString(data.toByteArray())
-    }
-
-    /**
-     * Return the hex string of SHA224 encryption.
-     *
-     * @param data The data.
-     * @return the hex string of SHA224 encryption
-     */
-    fun encryptSHA224ToString(data: ByteArray): String {
-        return bytes2HexString(encryptSHA224(data))
-    }
-
-    /**
-     * Return the bytes of SHA224 encryption.
-     *
-     * @param data The data.
-     * @return the bytes of SHA224 encryption
-     */
-    fun encryptSHA224(data: ByteArray): ByteArray? {
-        return hashTemplate(data, "SHA224")
-    }
-
-    /**
      * Return the hex string of SHA256 encryption.
      *
      * @param data The data.
@@ -238,36 +208,6 @@ object EncryptUtils {
      */
     fun encryptSHA256(data: ByteArray): ByteArray? {
         return hashTemplate(data, "SHA-256")
-    }
-
-    /**
-     * Return the hex string of SHA384 encryption.
-     *
-     * @param data The data.
-     * @return the hex string of SHA384 encryption
-     */
-    fun encryptSHA384ToString(data: String?): String {
-        return if (data == null || data.isEmpty()) "" else encryptSHA384ToString(data.toByteArray())
-    }
-
-    /**
-     * Return the hex string of SHA384 encryption.
-     *
-     * @param data The data.
-     * @return the hex string of SHA384 encryption
-     */
-    fun encryptSHA384ToString(data: ByteArray): String {
-        return bytes2HexString(encryptSHA384(data))
-    }
-
-    /**
-     * Return the bytes of SHA384 encryption.
-     *
-     * @param data The data.
-     * @return the bytes of SHA384 encryption
-     */
-    fun encryptSHA384(data: ByteArray): ByteArray? {
-        return hashTemplate(data, "SHA-384")
     }
 
     /**
@@ -391,39 +331,6 @@ object EncryptUtils {
     }
 
     /**
-     * Return the hex string of HmacSHA224 encryption.
-     *
-     * @param data The data.
-     * @param key  The key.
-     * @return the hex string of HmacSHA224 encryption
-     */
-    fun encryptHmacSHA224ToString(data: String?, key: String?): String {
-        return if (data == null || data.isEmpty() || key == null || key.isEmpty()) "" else encryptHmacSHA224ToString(data.toByteArray(), key.toByteArray())
-    }
-
-    /**
-     * Return the hex string of HmacSHA224 encryption.
-     *
-     * @param data The data.
-     * @param key  The key.
-     * @return the hex string of HmacSHA224 encryption
-     */
-    fun encryptHmacSHA224ToString(data: ByteArray, key: ByteArray): String {
-        return bytes2HexString(encryptHmacSHA224(data, key))
-    }
-
-    /**
-     * Return the bytes of HmacSHA224 encryption.
-     *
-     * @param data The data.
-     * @param key  The key.
-     * @return the bytes of HmacSHA224 encryption
-     */
-    fun encryptHmacSHA224(data: ByteArray, key: ByteArray): ByteArray? {
-        return hmacTemplate(data, key, "HmacSHA224")
-    }
-
-    /**
      * Return the hex string of HmacSHA256 encryption.
      *
      * @param data The data.
@@ -454,28 +361,6 @@ object EncryptUtils {
      */
     fun encryptHmacSHA256(data: ByteArray, key: ByteArray): ByteArray? {
         return hmacTemplate(data, key, "HmacSHA256")
-    }
-
-    /**
-     * Return the hex string of HmacSHA384 encryption.
-     *
-     * @param data The data.
-     * @param key  The key.
-     * @return the hex string of HmacSHA384 encryption
-     */
-    fun encryptHmacSHA384ToString(data: String?, key: String?): String {
-        return if (data == null || data.isEmpty() || key == null || key.isEmpty()) "" else encryptHmacSHA384ToString(data.toByteArray(), key.toByteArray())
-    }
-
-    /**
-     * Return the hex string of HmacSHA384 encryption.
-     *
-     * @param data The data.
-     * @param key  The key.
-     * @return the hex string of HmacSHA384 encryption
-     */
-    fun encryptHmacSHA384ToString(data: ByteArray, key: ByteArray): String {
-        return bytes2HexString(encryptHmacSHA384(data, key))
     }
 
     /**

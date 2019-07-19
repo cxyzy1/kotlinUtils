@@ -5,7 +5,6 @@ import com.cxyzy.kt.utils.BaseTest
 import com.cxyzy.kt.utils.TestConfig.PATH_ENCRYPT
 import com.cxyzy.utils.EncryptUtils
 import com.cxyzy.utils.others.EncodeUtils
-import org.junit.Assert
 import org.junit.Assert.assertArrayEquals
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -48,17 +47,17 @@ class EncryptUtilsTest : BaseTest() {
 
     @Test
     fun encryptMD5() {
-        val blankjMD5 = "AAC25CD336E01C8655F4EC7875445A60"
+        val md5Str = "AAC25CD336E01C8655F4EC7875445A60"
         assertEquals(
-                blankjMD5,
+                md5Str,
                 EncryptUtils.encryptMD5ToString("blankj")
         )
         assertEquals(
-                blankjMD5,
+                md5Str,
                 EncryptUtils.encryptMD5ToString("blankj".toByteArray())
         )
         assertArrayEquals(
-                hexString2Bytes(blankjMD5),
+                hexString2Bytes(md5Str),
                 EncryptUtils.encryptMD5("blankj".toByteArray())
         )
     }
@@ -74,171 +73,103 @@ class EncryptUtilsTest : BaseTest() {
 
     @Test
     fun encryptSHA1() {
-        val blankjSHA1 = "C606ACCB1FEB669E19D080ADDDDBB8E6CDA5F43C"
+        val sha1Str = "C606ACCB1FEB669E19D080ADDDDBB8E6CDA5F43C"
         assertEquals(
-                blankjSHA1,
+                sha1Str,
                 EncryptUtils.encryptSHA1ToString("blankj")
         )
         assertEquals(
-                blankjSHA1,
+                sha1Str,
                 EncryptUtils.encryptSHA1ToString("blankj".toByteArray())
         )
         assertArrayEquals(
-                hexString2Bytes(blankjSHA1),
+                hexString2Bytes(sha1Str),
                 EncryptUtils.encryptSHA1("blankj".toByteArray())
         )
     }
 
     @Test
-    fun encryptSHA224() {
-        val blankjSHA224 = "F4C5C0E8CF56CAC4D06DB6B523F67621859A9D79BDA4B2AC03097D5F"
-        assertEquals(
-                blankjSHA224,
-                EncryptUtils.encryptSHA224ToString("blankj")
-        )
-        assertEquals(
-                blankjSHA224,
-                EncryptUtils.encryptSHA224ToString("blankj".toByteArray())
-        )
-        assertArrayEquals(
-                hexString2Bytes(blankjSHA224),
-                EncryptUtils.encryptSHA224("blankj".toByteArray())
-        )
-    }
-
-    @Test
     fun encryptSHA256() {
-        val blankjSHA256 = "8BD80AE90DFBA112786367BEBDDEE60A638EF5B82682EDF8F3D3CA8E6BFEF648"
+        val sha256Str = "8BD80AE90DFBA112786367BEBDDEE60A638EF5B82682EDF8F3D3CA8E6BFEF648"
         assertEquals(
-                blankjSHA256,
+                sha256Str,
                 EncryptUtils.encryptSHA256ToString("blankj")
         )
         assertEquals(
-                blankjSHA256,
+                sha256Str,
                 EncryptUtils.encryptSHA256ToString("blankj".toByteArray())
         )
         assertArrayEquals(
-                hexString2Bytes(blankjSHA256),
+                hexString2Bytes(sha256Str),
                 EncryptUtils.encryptSHA256("blankj".toByteArray()))
 
     }
 
     @Test
-    fun encryptSHA384() {
-        val blankjSHA384 = "BF831E5221FC108D6A72ACB888BA3EB0C030A5F01BA2F739856BE70681D86F992B85E0D461101C74BAEDA895BD422557"
-        assertEquals(
-                blankjSHA384,
-                EncryptUtils.encryptSHA384ToString("blankj")
-        )
-        assertEquals(
-                blankjSHA384,
-                EncryptUtils.encryptSHA384ToString("blankj".toByteArray())
-        )
-        assertArrayEquals(
-                hexString2Bytes(blankjSHA384),
-                EncryptUtils.encryptSHA384("blankj".toByteArray())
-        )
-    }
-
-    @Test
     fun encryptSHA512() {
-        val blankjSHA512 = "D59D31067F614ED3586F85A31FEFDB7F33096316DA26EBE0FF440B241C8560D96650F100D78C512560C976949EFA89CB5D5589DCF68C7FAADE98F03BCFEC2B45"
+        val sha512Str = "D59D31067F614ED3586F85A31FEFDB7F33096316DA26EBE0FF440B241C8560D96650F100D78C512560C976949EFA89CB5D5589DCF68C7FAADE98F03BCFEC2B45"
         assertEquals(
-                blankjSHA512,
+                sha512Str,
                 EncryptUtils.encryptSHA512ToString("blankj")
         )
         assertEquals(
-                blankjSHA512,
+                sha512Str,
                 EncryptUtils.encryptSHA512ToString("blankj".toByteArray())
         )
         assertArrayEquals(
-                hexString2Bytes(blankjSHA512),
+                hexString2Bytes(sha512Str),
                 EncryptUtils.encryptSHA512("blankj".toByteArray())
         )
     }
 
     @Test
     fun encryptHmacMD5() {
-        val blankjHmacMD5 = "2BA3FDABEE222522044BEC0CE5D6B490"
+        val hmacStr = "2BA3FDABEE222522044BEC0CE5D6B490"
         assertEquals(
-                blankjHmacMD5,
+                hmacStr,
                 EncryptUtils.encryptHmacMD5ToString("blankj", testHmackey)
         )
         assertEquals(
-                blankjHmacMD5,
+                hmacStr,
                 EncryptUtils.encryptHmacMD5ToString("blankj".toByteArray(), testHmackey.toByteArray())
         )
         assertArrayEquals(
-                hexString2Bytes(blankjHmacMD5),
+                hexString2Bytes(hmacStr),
                 EncryptUtils.encryptHmacMD5("blankj".toByteArray(), testHmackey.toByteArray())
         )
     }
 
     @Test
     fun encryptHmacSHA1() {
-        val blankjHmacSHA1 = "88E83EFD915496860C83739BE2CF4752B2AC105F"
+        val sha1Str = "88E83EFD915496860C83739BE2CF4752B2AC105F"
         assertEquals(
-                blankjHmacSHA1,
+                sha1Str,
                 EncryptUtils.encryptHmacSHA1ToString("blankj", testHmackey)
         )
         assertEquals(
-                blankjHmacSHA1,
+                sha1Str,
                 EncryptUtils.encryptHmacSHA1ToString("blankj".toByteArray(), testHmackey.toByteArray())
         )
         assertArrayEquals(
-                hexString2Bytes(blankjHmacSHA1),
+                hexString2Bytes(sha1Str),
                 EncryptUtils.encryptHmacSHA1("blankj".toByteArray(), testHmackey.toByteArray())
         )
     }
 
     @Test
-    fun encryptHmacSHA224() {
-        val blankjHmacSHA224 = "E392D83D1030323FB2E062E8165A3AD38366E53DF19EA3290961E153"
-        assertEquals(
-                blankjHmacSHA224,
-                EncryptUtils.encryptHmacSHA224ToString("blankj", testHmackey)
-        )
-        assertEquals(
-                blankjHmacSHA224,
-                EncryptUtils.encryptHmacSHA224ToString("blankj".toByteArray(), testHmackey.toByteArray())
-        )
-        assertArrayEquals(
-                hexString2Bytes(blankjHmacSHA224),
-                EncryptUtils.encryptHmacSHA224("blankj".toByteArray(), testHmackey.toByteArray())
-        )
-    }
-
-    @Test
     fun encryptHmacSHA256() {
-        val blankjHmacSHA256 = "A59675F13FC9A6E06D8DC90D4DC01DB9C991B0B95749D2471E588BF311DA2C67"
+        val sha256Str = "A59675F13FC9A6E06D8DC90D4DC01DB9C991B0B95749D2471E588BF311DA2C67"
         assertEquals(
-                blankjHmacSHA256,
+                sha256Str,
                 EncryptUtils.encryptHmacSHA256ToString("blankj", testHmackey)
         )
         assertEquals(
-                blankjHmacSHA256,
+                sha256Str,
                 EncryptUtils.encryptHmacSHA256ToString("blankj".toByteArray(), testHmackey.toByteArray())
         )
         assertArrayEquals(
-                hexString2Bytes(blankjHmacSHA256),
+                hexString2Bytes(sha256Str),
                 EncryptUtils.encryptHmacSHA256("blankj".toByteArray(), testHmackey.toByteArray())
-        )
-    }
-
-    @Test
-    fun encryptHmacSHA384() {
-        val blankjHmacSHA384 = "9FC2F49C7EDE698EA59645B3BEFBBE67DCC7D6623E03D4D03CDA1324F7B6445BC428AB42F6A962CF79AFAD1302C3223D"
-        assertEquals(
-                blankjHmacSHA384,
-                EncryptUtils.encryptHmacSHA384ToString("blankj", testHmackey)
-        )
-        assertEquals(
-                blankjHmacSHA384,
-                EncryptUtils.encryptHmacSHA384ToString("blankj".toByteArray(), testHmackey.toByteArray())
-        )
-        assertArrayEquals(
-                hexString2Bytes(blankjHmacSHA384),
-                EncryptUtils.encryptHmacSHA384("blankj".toByteArray(), testHmackey.toByteArray())
         )
     }
 
