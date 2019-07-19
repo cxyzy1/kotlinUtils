@@ -1,7 +1,7 @@
 package com.cxyzy.kt.utils
 
 
-import com.cxyzy.utils.others.Utils
+import com.cxyzy.utils.internals.Utils
 
 import org.junit.Test
 import org.junit.runner.RunWith
