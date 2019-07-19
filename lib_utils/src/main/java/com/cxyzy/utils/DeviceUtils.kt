@@ -5,26 +5,14 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.net.Uri
-import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Debug
 import android.provider.Settings
 import android.telephony.TelephonyManager
 import android.text.TextUtils
-
 import androidx.annotation.RequiresApi
-import androidx.annotation.RequiresPermission
-
-import com.cxyzy.utils.internals.ShellUtils
 import com.cxyzy.utils.internals.Utils
-
 import java.io.File
-import java.net.InetAddress
-import java.net.NetworkInterface
-import java.net.SocketException
-
-import android.Manifest.permission.ACCESS_WIFI_STATE
-import android.Manifest.permission.INTERNET
 
 /**
  * device utils
@@ -92,126 +80,6 @@ object DeviceUtils {
         }
 
     /**
-     * Return the MAC address.
-     *
-     * Must hold `<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />`,
-     * `<uses-permission android:name="android.permission.INTERNET" />`
-     *
-     * @return the MAC address
-     */
-    val macAddress: String
-        @RequiresPermission(allOf = [ACCESS_WIFI_STATE, INTERNET])
-        get() = getMacAddress()
-
-    private val macAddressByWifiInfo: String
-        @SuppressLint("MissingPermission", "HardwareIds")
-        get() {
-            try {
-                val wifi = Utils.app
-                        .applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
-                if (wifi != null) {
-                    val info = wifi.connectionInfo
-                    if (info != null) return info.macAddress
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-
-            return "02:00:00:00:00:00"
-        }
-
-    private val macAddressByNetworkInterface: String
-        get() {
-            try {
-                val nis = NetworkInterface.getNetworkInterfaces()
-                while (nis.hasMoreElements()) {
-                    val ni = nis.nextElement()
-                    if (ni == null || !ni.name.equals("wlan0", ignoreCase = true)) {
-                        continue
-                    }
-                    val macBytes = ni.hardwareAddress
-                    if (macBytes != null && macBytes.size > 0) {
-                        val sb = StringBuilder()
-                        for (b in macBytes) {
-                            sb.append(String.format("%02x:", b))
-                        }
-                        return sb.substring(0, sb.length - 1)
-                    }
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-
-            return "02:00:00:00:00:00"
-        }
-
-    private val macAddressByInetAddress: String
-        get() {
-            try {
-                val inetAddress = inetAddress
-                if (inetAddress != null) {
-                    val ni = NetworkInterface.getByInetAddress(inetAddress)
-                    if (ni != null) {
-                        val macBytes = ni.hardwareAddress
-                        if (macBytes != null && macBytes.size > 0) {
-                            val sb = StringBuilder()
-                            for (b in macBytes) {
-                                sb.append(String.format("%02x:", b))
-                            }
-                            return sb.substring(0, sb.length - 1)
-                        }
-                    }
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-
-            return "02:00:00:00:00:00"
-        }
-
-    private// To prevent phone of xiaomi return "10.0.2.15"
-    val inetAddress: InetAddress?
-        get() {
-            try {
-                val nis = NetworkInterface.getNetworkInterfaces()
-                while (nis.hasMoreElements()) {
-                    val ni = nis.nextElement()
-                    if (!ni.isUp) continue
-                    val addresses = ni.inetAddresses
-                    while (addresses.hasMoreElements()) {
-                        val inetAddress = addresses.nextElement()
-                        if (!inetAddress.isLoopbackAddress) {
-                            val hostAddress = inetAddress.hostAddress
-                            if (hostAddress.indexOf(':') < 0) return inetAddress
-                        }
-                    }
-                }
-            } catch (e: SocketException) {
-                e.printStackTrace()
-            }
-
-            return null
-        }
-
-    private val macAddressByFile: String
-        get() {
-            var result: ShellUtils.CommandResult = ShellUtils.execCmd("getprop wifi.interface", false)
-            if (result.result == 0) {
-                val name = result.successMsg
-                if (name != null) {
-                    result = ShellUtils.execCmd("cat /sys/class/net/$name/address", false)
-                    if (result.result == 0) {
-                        val address = result.successMsg
-                        if (address != null && address.length > 0) {
-                            return address
-                        }
-                    }
-                }
-            }
-            return "02:00:00:00:00:00"
-        }
-
-    /**
      * Return the manufacturer of the product/hardware.
      *
      * e.g. Xiaomi
@@ -255,14 +123,6 @@ object DeviceUtils {
         }
 
     /**
-     * Return whether device is tablet.
-     *
-     * @return `true`: yes<br></br>`false`: no
-     */
-    val isTablet: Boolean
-        get() = Utils.app.resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK >= Configuration.SCREENLAYOUT_SIZE_LARGE
-
-    /**
      * Return whether device is emulator.
      *
      * @return `true`: yes<br></br>`false`: no
@@ -287,11 +147,9 @@ object DeviceUtils {
 
             var operatorName = ""
             val tm = Utils.app.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
-            if (tm != null) {
-                val name = tm.networkOperatorName
-                if (name != null) {
-                    operatorName = name
-                }
+            val name = tm.networkOperatorName
+            if (name != null) {
+                operatorName = name
             }
             val checkOperatorName = operatorName.toLowerCase() == "android"
             if (checkOperatorName) return true
@@ -300,49 +158,7 @@ object DeviceUtils {
             val intent = Intent()
             intent.data = Uri.parse(url)
             intent.action = Intent.ACTION_DIAL
-            val checkDial = intent.resolveActivity(Utils.app.packageManager) != null
-            return if (checkDial) true else false
+            return intent.resolveActivity(Utils.app.packageManager) != null
 
         }
-
-    /**
-     * Return the MAC address.
-     *
-     * Must hold `<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />`,
-     * `<uses-permission android:name="android.permission.INTERNET" />`
-     *
-     * @return the MAC address
-     */
-    @RequiresPermission(allOf = [ACCESS_WIFI_STATE, INTERNET])
-    fun getMacAddress(vararg excepts: String): String {
-        var macAddress = macAddressByNetworkInterface
-        if (isAddressNotInExcepts(macAddress, *excepts)) {
-            return macAddress
-        }
-        macAddress = macAddressByInetAddress
-        if (isAddressNotInExcepts(macAddress, *excepts)) {
-            return macAddress
-        }
-        macAddress = macAddressByWifiInfo
-        if (isAddressNotInExcepts(macAddress, *excepts)) {
-            return macAddress
-        }
-        macAddress = macAddressByFile
-        return if (isAddressNotInExcepts(macAddress, *excepts)) {
-            macAddress
-        } else ""
-    }
-
-    private fun isAddressNotInExcepts(address: String, vararg excepts: String): Boolean {
-        if (excepts.isEmpty()) {
-            return "02:00:00:00:00:00" != address
-        }
-        for (filter in excepts) {
-            if (address == filter) {
-                return false
-            }
-        }
-        return true
-    }
-
 }
