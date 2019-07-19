@@ -1,4 +1,4 @@
-package com.cxyzy.utils.blankj;
+package com.cxyzy.utils.others;
 
 import android.app.Activity;
 import android.content.ComponentName;
