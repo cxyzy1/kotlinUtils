@@ -4,6 +4,7 @@ import android.util.Base64
 import java.io.File
 import java.io.FileInputStream
 import java.io.IOException
+import java.io.UnsupportedEncodingException
 import java.security.*
 import java.security.spec.PKCS8EncodedKeySpec
 import java.security.spec.X509EncodedKeySpec
@@ -664,6 +665,28 @@ object EncryptUtils {
         return base64Encode(encryptAES(data, key, transformation, iv))
     }
 
+    private const val AES_MODE = "AES/CBC/PKCS7Padding"
+    private const val CHARSET = "UTF-8"
+    private const val CIPHER = "AES"
+    private const val HASH_ALGORITHM = "SHA-256"
+
+    /**
+     * Return the hex string of AES encryption.
+     *
+     * @param data           The data.
+     * @param password            The password.
+     * @param transformation The name of the transformation, e.g., *DES/CBC/PKCS5Padding*.
+     * @param iv             The buffer with the IV. The contents of the
+     * buffer are copied to protect against subsequent modification.
+     * @return the hex string of AES encryption
+     */
+    fun encryptAES2HexString(data: String,
+                             password: String,
+                             transformation: String,
+                             iv: ByteArray?): String {
+        return encryptAES2HexString(data.toByteArray(), generateKeyBytes(password), transformation, iv)
+    }
+
     /**
      * Return the hex string of AES encryption.
      *
@@ -713,6 +736,32 @@ object EncryptUtils {
                          transformation: String,
                          iv: ByteArray?): ByteArray? {
         return decryptAES(base64Decode(data), key, transformation, iv)
+    }
+
+    /**
+     * Return the bytes of AES decryption for hex string.
+     *
+     * @param data           The data.
+     * @param key            The key.
+     * @param transformation The name of the transformation, e.g., *DES/CBC/PKCS5Padding*.
+     * @param iv             The buffer with the IV. The contents of the
+     * buffer are copied to protect against subsequent modification.
+     * @return the bytes of AES decryption for hex string
+     */
+    fun decryptHexStringAES(data: String,
+                            password: String,
+                            transformation: String,
+                            iv: ByteArray?): String? {
+
+        return decryptAES(hexString2Bytes(data), generateKeyBytes(password), transformation, iv)?.let { String(it) }
+    }
+
+    @Throws(NoSuchAlgorithmException::class, UnsupportedEncodingException::class)
+    private fun generateKeyBytes(password: String): ByteArray {
+        val digest = MessageDigest.getInstance(HASH_ALGORITHM)
+        val bytes = password.toByteArray(charset(CHARSET))
+        digest.update(bytes, 0, bytes.size)
+        return digest.digest()
     }
 
     /**

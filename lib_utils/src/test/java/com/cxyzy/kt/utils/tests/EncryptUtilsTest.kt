@@ -37,6 +37,7 @@ class EncryptUtilsTest : BaseTest() {
     private val dataAES = "11111111111111111111111111111111"
     private val keyAES = "11111111111111111111111111111111"
     private val resAES = "E56E26F5608B8D268F2556E198A0E01B"
+    private val resAES2 = "00C5551EB681FCA3F92233C564A007AF00C5551EB681FCA3F92233C564A007AF"
     private val bytesDataAES = hexString2Bytes(dataAES)
     private val bytesKeyAES = hexString2Bytes(keyAES)
     private val bytesResAES = hexString2Bytes(resAES)
@@ -260,6 +261,10 @@ class EncryptUtilsTest : BaseTest() {
                 EncryptUtils.encryptAES(bytesDataAES!!, bytesKeyAES!!, "AES/ECB/NoPadding", null)
         )
         assertEquals(
+                resAES2,
+                EncryptUtils.encryptAES2HexString(dataAES, keyAES, "AES/ECB/NoPadding", null)
+        )
+        assertEquals(
                 resAES,
                 EncryptUtils.encryptAES2HexString(bytesDataAES, bytesKeyAES, "AES/ECB/NoPadding", null)
         )
@@ -274,6 +279,10 @@ class EncryptUtilsTest : BaseTest() {
         assertArrayEquals(
                 bytesDataAES,
                 EncryptUtils.decryptAES(bytesResAES, bytesKeyAES!!, "AES/ECB/NoPadding", null)
+        )
+        assertEquals(
+                dataAES,
+                EncryptUtils.decryptHexStringAES(resAES2, keyAES, "AES/ECB/NoPadding", null)
         )
         assertArrayEquals(
                 bytesDataAES,
