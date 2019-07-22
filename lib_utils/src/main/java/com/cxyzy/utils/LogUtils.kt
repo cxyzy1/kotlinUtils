@@ -4,20 +4,20 @@ import android.util.Log
 
 const val TAG_MAX_LEN = 23
 
-interface LogUtil {
+interface LogUtils {
     /**
-     * The logUtil tag used in extension functions for the [LogUtil].
+     * The logUtil tag used in extension functions for the [LogUtils].
      * Note that the tag length should not be more than 23 symbols.
      */
     val loggerTag: String
         get() = getTag(javaClass)
 }
 
-fun LogUtil(clazz: Class<*>): LogUtil = object : LogUtil {
+fun LogUtils(clazz: Class<*>): LogUtils = object : LogUtils {
     override val loggerTag = getTag(clazz)
 }
 
-fun LogUtil(tag: String): LogUtil = object : LogUtil {
+fun LogUtils(tag: String): LogUtils = object : LogUtils {
     init {
         assert(tag.length <= TAG_MAX_LEN) { "The maximum tag length is $TAG_MAX_LEN, got $tag" }
     }
@@ -25,7 +25,7 @@ fun LogUtil(tag: String): LogUtil = object : LogUtil {
     override val loggerTag = tag
 }
 
-inline fun <reified T : Any> logUtil(): LogUtil = LogUtil(T::class.java)
+inline fun <reified T : Any> logUtils(): LogUtils = LogUtils(T::class.java)
 
 /**
  * Send a log message with the [Log.VERBOSE] severity.
@@ -38,7 +38,7 @@ inline fun <reified T : Any> logUtil(): LogUtil = LogUtil(T::class.java)
  *
  * @see [Log.v].
  */
-fun LogUtil.verbose(message: Any?, thr: Throwable? = null) {
+fun LogUtils.verbose(message: Any?, thr: Throwable? = null) {
     log(this, message, thr, Log.VERBOSE,
             { tag, msg -> Log.v(tag, msg) },
             { tag, msg, thr -> Log.v(tag, msg, thr) })
@@ -55,7 +55,7 @@ fun LogUtil.verbose(message: Any?, thr: Throwable? = null) {
  *
  * @see [Log.d].
  */
-fun LogUtil.debug(message: Any?, thr: Throwable? = null) {
+fun LogUtils.debug(message: Any?, thr: Throwable? = null) {
     log(this, message, thr, Log.DEBUG,
             { tag, msg -> Log.d(tag, msg) },
             { tag, msg, thr -> Log.d(tag, msg, thr) })
@@ -72,7 +72,7 @@ fun LogUtil.debug(message: Any?, thr: Throwable? = null) {
  *
  * @see [Log.i].
  */
-fun LogUtil.info(message: Any?, thr: Throwable? = null) {
+fun LogUtils.info(message: Any?, thr: Throwable? = null) {
     log(this, message, thr, Log.INFO,
             { tag, msg -> Log.i(tag, msg) },
             { tag, msg, thr -> Log.i(tag, msg, thr) })
@@ -89,7 +89,7 @@ fun LogUtil.info(message: Any?, thr: Throwable? = null) {
  *
  * @see [Log.w].
  */
-fun LogUtil.warn(message: Any?, thr: Throwable? = null) {
+fun LogUtils.warn(message: Any?, thr: Throwable? = null) {
     log(this, message, thr, Log.WARN,
             { tag, msg -> Log.w(tag, msg) },
             { tag, msg, thr -> Log.w(tag, msg, thr) })
@@ -106,7 +106,7 @@ fun LogUtil.warn(message: Any?, thr: Throwable? = null) {
  *
  * @see [Log.e].
  */
-fun LogUtil.error(message: Any?, thr: Throwable? = null) {
+fun LogUtils.error(message: Any?, thr: Throwable? = null) {
     log(this, message, thr, Log.ERROR,
             { tag, msg -> Log.e(tag, msg) },
             { tag, msg, thr -> Log.e(tag, msg, thr) })
@@ -121,7 +121,7 @@ fun LogUtil.error(message: Any?, thr: Throwable? = null) {
  *
  * @see [Log.e].
  */
-fun LogUtil.error(thr: Throwable? = null) {
+fun LogUtils.error(thr: Throwable? = null) {
     log(this, null, thr, Log.ERROR,
             { tag, msg -> Log.e(tag, msg) },
             { tag, msg, thr -> Log.e(tag, msg, thr) })
@@ -137,7 +137,7 @@ fun LogUtil.error(thr: Throwable? = null) {
  *
  * @see [Log.wtf].
  */
-fun LogUtil.wtf(message: Any?, thr: Throwable? = null) {
+fun LogUtils.wtf(message: Any?, thr: Throwable? = null) {
     if (thr != null) {
         Log.wtf(loggerTag, message?.toString() ?: "null", thr)
     } else {
@@ -155,7 +155,7 @@ fun LogUtil.wtf(message: Any?, thr: Throwable? = null) {
  *
  * @see [Log.v].
  */
-inline fun LogUtil.verbose(message: () -> Any?) {
+inline fun LogUtils.verbose(message: () -> Any?) {
     val tag = loggerTag
     if (Log.isLoggable(tag, Log.VERBOSE)) {
         Log.v(tag, message()?.toString() ?: "null")
@@ -172,7 +172,7 @@ inline fun LogUtil.verbose(message: () -> Any?) {
  *
  * @see [Log.d].
  */
-inline fun LogUtil.debug(message: () -> Any?) {
+inline fun LogUtils.debug(message: () -> Any?) {
     val tag = loggerTag
     if (Log.isLoggable(tag, Log.DEBUG)) {
         Log.d(tag, message()?.toString() ?: "null")
@@ -189,7 +189,7 @@ inline fun LogUtil.debug(message: () -> Any?) {
  *
  * @see [Log.i].
  */
-inline fun LogUtil.info(message: () -> Any?) {
+inline fun LogUtils.info(message: () -> Any?) {
     val tag = loggerTag
     if (Log.isLoggable(tag, Log.INFO)) {
         Log.i(tag, message()?.toString() ?: "null")
@@ -206,7 +206,7 @@ inline fun LogUtil.info(message: () -> Any?) {
  *
  * @see [Log.w].
  */
-inline fun LogUtil.warn(message: () -> Any?) {
+inline fun LogUtils.warn(message: () -> Any?) {
     val tag = loggerTag
     if (Log.isLoggable(tag, Log.WARN)) {
         Log.w(tag, message()?.toString() ?: "null")
@@ -223,7 +223,7 @@ inline fun LogUtil.warn(message: () -> Any?) {
  *
  * @see [Log.e].
  */
-inline fun LogUtil.error(message: () -> Any?) {
+inline fun LogUtils.error(message: () -> Any?) {
     val tag = loggerTag
     if (Log.isLoggable(tag, Log.ERROR)) {
         Log.e(tag, message()?.toString() ?: "null")
@@ -236,14 +236,14 @@ inline fun LogUtil.error(message: () -> Any?) {
 inline fun Throwable.getStackTraceString(): String = Log.getStackTraceString(this)
 
 private inline fun log(
-        logUtil: LogUtil,
+        logUtils: LogUtils,
         message: Any?,
         thr: Throwable?,
         level: Int,
         f: (String, String) -> Unit,
         fThrowable: (String, String, Throwable) -> Unit
 ) {
-    val tag = logUtil.loggerTag
+    val tag = logUtils.loggerTag
     if (Log.isLoggable(tag, level)) {
         if (thr != null) {
             fThrowable(tag, message?.toString() ?: "", thr)
