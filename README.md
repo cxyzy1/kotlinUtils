@@ -14,3 +14,5 @@ Frequently used utils in kotlin.
    Path related utils such as get external sd card path.
 6. DeviceUtils
    Utils to get information about device manufacturer and so on.
+7. LogUtils
+   Utils to simplify android log.
