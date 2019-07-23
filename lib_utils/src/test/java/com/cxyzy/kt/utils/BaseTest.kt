@@ -20,8 +20,6 @@ open class BaseTest {
     }
 
     @Test
-    @Throws(Exception::class)
     fun test() {
-
     }
 }
