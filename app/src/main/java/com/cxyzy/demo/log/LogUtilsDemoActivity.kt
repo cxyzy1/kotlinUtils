@@ -17,12 +17,12 @@ class LogUtilsDemoActivity : AppCompatActivity(), LogUtils {
 
     private fun initViews() {
         logBtn.setOnClickListener {
-            verbose("test")
-            debug("test")
-            info("test")
-            warn("test")
+            verbose(editText.text)
+            debug(editText.text)
+            info(editText.text)
+            warn(editText.text)
             try {
-                throw Exception("test")
+                throw Exception(editText.text.toString())
             } catch (e: Exception) {
                 error(e)
             }
