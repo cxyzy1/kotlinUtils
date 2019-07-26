@@ -20,8 +20,13 @@ implementation 'com.github.cxyzy1:kotlinUtils:1.0.7'
 # Feature list
 1. ToastExt
    Toast utils to simplify showing toast.
+   eg.
 2. IntentExt
    Intent utils, simplify activity transitions.
+   eg.
+   ```
+   startActivity<TestActivity>()
+   ```
 3. EncryptUtils
    support encryption and decryption by aes and so on.
 4. SizeUtils
