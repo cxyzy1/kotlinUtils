@@ -16,7 +16,7 @@ class ToastUtilsDemoActivity : AppCompatActivity() {
 
     private fun initViews() {
         toastBtn.setOnClickListener {
-            toast("ha ha")
+            toast("hello")
         }
     }
 }

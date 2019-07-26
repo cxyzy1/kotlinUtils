@@ -244,12 +244,10 @@ private inline fun log(
         fThrowable: (String, String, Throwable) -> Unit
 ) {
     val tag = logUtils.loggerTag
-    if (Log.isLoggable(tag, level)) {
-        if (thr != null) {
-            fThrowable(tag, message?.toString() ?: "", thr)
-        } else {
-            f(tag, message?.toString() ?: "")
-        }
+    if (thr != null) {
+        fThrowable(tag, message?.toString() ?: "", thr)
+    } else {
+        f(tag, message?.toString() ?: "")
     }
 }
 

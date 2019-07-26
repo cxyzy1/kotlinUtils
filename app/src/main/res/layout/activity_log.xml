@@ -18,7 +18,7 @@
         android:id="@+id/logBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="click to generate log"
+        android:text="Click to generate log"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
