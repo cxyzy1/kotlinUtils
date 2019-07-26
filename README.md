@@ -14,7 +14,7 @@ allprojects {
 ```
 2. Add the dependency
 ```
-implementation 'com.github.cxyzy1:kotlinUtils:1.0.7'
+implementation 'com.github.cxyzy1:kotlinUtils:1.0.9'
 ```
 
 # Feature list and detailed usage
