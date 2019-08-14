@@ -14,7 +14,7 @@ allprojects {
 ```
 2. Add the dependency
 ```
-implementation 'com.github.cxyzy1:kotlinUtils:1.0.9'
+implementation 'com.github.cxyzy1:kotlinUtils:1.0.10'
 ```
 
 # Feature list and detailed usage
@@ -52,3 +52,5 @@ implementation 'com.github.cxyzy1:kotlinUtils:1.0.9'
    Path related utils such as get external sd card path.
 7. DeviceUtils
    Utils to get information about device manufacturer and so on.
+8. LocationUtils
+   Get location by gps(beidou) or network.
